@@ -16,6 +16,7 @@ class CityResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'city_name_fa' => $this->city_name_fa,
             'city_name_en' => $this->city_name_en,
             'province' => new ProvinceResource($this->province)
