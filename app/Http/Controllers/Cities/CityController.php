@@ -16,9 +16,9 @@ class CityController extends Controller
         return CityResource::collection(City::get());
     }
 
-    public function show($id)
+    public function show($provinceId)
     {
         // $province = Province::findOrFail($id);
-        return CityResource::collection(Province::with('city')->findOrFail($id)->city);
+        return CityResource::collection(Province::with('city')->findOrFail($provinceId)->city);
     }
 }

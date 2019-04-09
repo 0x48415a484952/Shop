@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateListProductsTable extends Migration
+class CreateMylistProductVariationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,12 @@ class CreateListProductsTable extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::create('list_products', function (Blueprint $table) {
+        Schema::create('mylist_product_variation', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('list_id');
-            $table->foreign('list_id')->references('id')->on('lists');
-            $table->unsignedInteger('product_variation_type_id');
-            $table->foreign('product_variation_type_id')->references('id')->on('products');
+            $table->unsignedInteger('mylist_id');
+            $table->foreign('mylist_id')->references('id')->on('mylists');
+            $table->unsignedInteger('product_variation_id');
+            $table->foreign('product_variation_id')->references('id')->on('product_variations');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateListProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('list_products');
+        Schema::dropIfExists('mylist_products');
     }
 }

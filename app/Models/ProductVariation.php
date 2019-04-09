@@ -68,4 +68,9 @@ class ProductVariation extends Model
                 'in_stock'
             ]);
     }
+
+    public function lists()
+    {
+        return $this->belongsToMany(Mylist::class);
+    }
 }

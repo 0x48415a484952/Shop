@@ -41,6 +41,7 @@ Route::group(['middleware' => ['jwt.verify', 'role.authorization']], function() 
 
 
 Route::resource('categories', 'Categories\CategoryController');
+Route::resource('mylists', 'Mylists\MylistController');
 Route::resource('products', 'Products\ProductController');
 Route::resource('addresses', 'Addresses\AddressController');
 Route::resource('provinces', 'Provinces\ProvinceController');
