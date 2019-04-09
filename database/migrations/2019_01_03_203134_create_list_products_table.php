@@ -19,7 +19,7 @@ class CreateListProductsTable extends Migration
             $table->unsignedInteger('list_id');
             $table->foreign('list_id')->references('id')->on('lists');
             $table->unsignedInteger('product_variation_type_id');
-            $table->foreign('product_variation__type_id')->references('id')->on('products');
+            $table->foreign('product_variation_type_id')->references('id')->on('products');
             $table->timestamps();
         });
     }
