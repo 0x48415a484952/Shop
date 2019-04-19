@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Products;
 
+use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load(['variations.type', 'variations.type', 'variations.product']);
+        $product->load(['variations.type', 'variations.product']);
         return new ProductResource(
             $product
         );

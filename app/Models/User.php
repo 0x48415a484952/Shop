@@ -7,6 +7,7 @@ use App\Models\Address;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Information;
 
 
 class User extends Authenticatable implements JWTSubject
@@ -49,5 +50,10 @@ class User extends Authenticatable implements JWTSubject
     public function addresses()
     {
         return $this->hasMany(Address::class);
+    }
+
+    public function information()
+    {
+        return $this->hasOne(Information::class);
     }
 }

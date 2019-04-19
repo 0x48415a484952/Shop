@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use App\Models\Category;
 use App\Models\Traits\HasPrice;
 use App\Models\ProductVariation;
@@ -37,5 +38,10 @@ class Product extends Model
     public function variations() 
     {
         return $this->hasMany(ProductVariation::class)->orderBy('order', 'asc');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->with('user');
     }
 }

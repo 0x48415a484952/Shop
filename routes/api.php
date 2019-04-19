@@ -46,6 +46,7 @@ Route::resource('products', 'Products\ProductController');
 Route::resource('addresses', 'Addresses\AddressController');
 Route::resource('provinces', 'Provinces\ProvinceController');
 Route::resource('cities', 'Cities\CityController');
+Route::resource('comments', 'Comments\CommentController');
 
 Route::group(['prefix' => 'auth'], function() {
     Route::post('register', 'Auth\RegisterController@action');
