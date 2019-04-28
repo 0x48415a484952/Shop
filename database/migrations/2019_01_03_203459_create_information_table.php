@@ -22,7 +22,7 @@ class CreateInformationTable extends Migration
             $table->string('last_name');
             $table->string('job');
             $table->timestamp('birth_date');
-            $table->string('user_images');
+            $table->string('image');
             $table->string('level');
             $table->timestamps();
         });

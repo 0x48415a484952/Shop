@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         // return Category::all();
         return CategoryResource::collection(
-            Category::with('children')->parents()->ordered()->get()
+            Category::with('children.children')->parents()->ordered()->get()
         );
     }
 

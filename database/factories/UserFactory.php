@@ -14,12 +14,14 @@ use App\Models\User;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    
     return [
-        'social_id' => '5311347678',
-        'phone' => '09354584063',
+        'social_id' => $faker->numberBetween(3720558372, 9392935689),
+        'phone' => $faker->phoneNumber,
         'phone_verification_code' => mt_rand(10000, 99999),
         'phone_verified_at' => now(),
-        'password' => 'hazaa',
+        'password' => 'password12',
         'remember_token' => str_random(10),
     ];
 });
+

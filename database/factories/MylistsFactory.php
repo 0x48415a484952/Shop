@@ -5,6 +5,7 @@ use App\Models\Mylist;
 
 $factory->define(Mylist::class, function (Faker $faker) {
     return [
-        'title' => $faker->name
+        'title' => $title = $faker->name,
+        'slug' => str_slug($title)
     ];
 });

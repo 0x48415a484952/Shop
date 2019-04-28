@@ -12,6 +12,14 @@ class StocksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Stock::class)->create();
+        factory(Stock::class)->create([
+            'product_variation_id' => $this->getRandomProductVariationId()
+        ]);
+    }
+
+    public function getRandomProductVariationId()
+    {
+        $productVariation = ProductVariation::inRandomOrder()->first();
+        return $productVariation->id;
     }
 }
