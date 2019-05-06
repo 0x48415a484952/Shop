@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CommentTableSeeder::class);
         $this->call(ProvinceTableSeeder::class);
         $this->call(CityTableSeeder::class);
+        $this->call(AddressesTableSeeder::class);
         Model::reguard();
     }
 }
