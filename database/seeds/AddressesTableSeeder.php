@@ -9,10 +9,10 @@ class AddressesTableSeeder extends Seeder
 {
     public function run()
     {
-        dd(User::get());
-        factory(Address::class, 30)->create()->each(function ($address) {
-            $address->user()->saveMany(User::get())->make();
-        });
+        factory(Address::class, 30)->create([
+            'user_id' => 1,
+            'province_id' => 20
+        ]);
     }
 
     public function getRandomUserId()
