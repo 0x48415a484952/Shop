@@ -10,6 +10,7 @@ $factory->define(ProductVariation::class, function (Faker $faker) {
     return [
         'product_id' => factory(Product::class)->create()->id,
         'title' => $faker->unique()->name,
-        'product_variation_type_id' => factory(ProductVariationType::class)->create()->id
+        'product_variation_type_id' => factory(ProductVariationType::class)->create()->id,
+        'price' => mt_rand(20000, 700000)
     ];
 });

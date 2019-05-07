@@ -14,7 +14,7 @@ class CommentTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Comment::class)->create([
+        factory(Comment::class, 50)->create([
             'user_id' => $this->getRandomUserId(),
             'product_id' => $this->getRandomProductId()
         ]);
