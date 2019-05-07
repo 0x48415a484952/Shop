@@ -12,7 +12,7 @@ class StocksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Stock::class)->create([
+        factory(Stock::class, 30)->create([
             'product_variation_id' => $this->getRandomProductVariationId()
         ]);
     }

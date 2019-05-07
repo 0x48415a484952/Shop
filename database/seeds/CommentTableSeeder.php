@@ -7,14 +7,13 @@ use App\Models\Comment;
 
 class CommentTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
+<<<<<<< HEAD
         factory(Comment::class, 50)->create([
+=======
+        factory(Comment::class, 30)->create([
+>>>>>>> 462f582b1aa45afb3d7d8e74a702e4c9266a77f7
             'user_id' => $this->getRandomUserId(),
             'product_id' => $this->getRandomProductId()
         ]);

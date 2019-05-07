@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Mylist;
+use Illuminate\Database\Seeder;
+use App\Models\ProductVariation;
 
 class MylistsTableSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class MylistsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Mylist::class, 3)->create();
+        factory(Mylist::class, 21)->create()->each(function ($mylist) {
+            $mylist->items()->saveMany(ProductVariation::get())->make();
+        });
     }
 }

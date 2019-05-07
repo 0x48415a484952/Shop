@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -12,6 +13,8 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 3)->create();
+        factory(Product::class, 60)->create()->each(function ($product) {
+            $product->categories()->saveMany(Category::get())->make();
+        });
     }
 }
