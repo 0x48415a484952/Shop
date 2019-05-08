@@ -9,16 +9,13 @@ class CommentTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(Comment::class, 30)->create([
-            'user_id' => $this->getRandomUserId(),
-            'product_id' => $this->getRandomProductId()
-        ]);
-    }
-
-    public function getRandomUserId()
-    {
-        $user = User::inRandomOrder()->first();
-        return $user->id;
+        $users = User::get();
+        foreach($users as $user) {
+            factory(Comment::class, 30)->create([
+                'user_id' => $user->id,
+                'product_id' => $this->getRandomProductId()
+            ]);
+        }
     }
 
     public function getRandomProductId()
