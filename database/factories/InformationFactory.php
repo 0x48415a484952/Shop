@@ -5,8 +5,9 @@ use App\Models\Information;
 use Faker\Generator as Faker;
 
 $factory->define(Information::class, function (Faker $faker) {
+    $user = User::inRandomOrder()->first();
     return [
-        'user_id' => factory(User::class)->create()->id,
+        'user_id' => $user->id,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'job' => $faker->jobTitle,

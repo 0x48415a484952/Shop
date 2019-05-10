@@ -23,4 +23,5 @@ return [
     'confirmation_code_not_true'    => 'your confirmation code is not true', 
     'account_have_been_updated'     => 'your account have been updated',
     'new_password_sent'             => 'the new password has been sent to your phone number',
+    'national_code'                 => 'The national code must be a valid national code.',
 ];

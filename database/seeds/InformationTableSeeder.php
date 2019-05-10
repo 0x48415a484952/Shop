@@ -11,20 +11,26 @@ class InformationTableSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        $users = $this->getUsersInRandomOrder();
-        foreach($users as $user) {
-            factory(Information::class)->create([
-                'user_id' => $user->id
-            ]);
-        }
+        factory(Information::class, 30)->create();
+    }
+    // public function run()
+    // {
+    //     $users = $this->getUsersInRandomOrder();
+    //     dd($users);
+    //     foreach($users as $user) {
+    //         factory(Information::class)->create([
+    //             'user_id' => $user->id
+    //         ]);
+    //     }
         
-    }
+    // }
 
-    public function getUsersInRandomOrder()
-    {
-        $users = User::inRandomOrder()->get();
-        return $users;
-    }
+    // public function getUsersInRandomOrder()
+    // {
+    //     $users = User::inRandomOrder()->get();
+    //     return $users;
+    // }
 }

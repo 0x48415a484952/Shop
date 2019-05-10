@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 60)->create()->each(function ($product) {
+        factory(Product::class, 30)->create()->each(function ($product) {
             $product->categories()->saveMany(Category::get())->make();
         });
     }

@@ -23,4 +23,5 @@ return [
     'confirmation_code_not_true'    => 'کد تایید شما صحیح نیست',
     'account_have_been_updated'     => 'اکانت شما آپدیت شد',
     'new_password_sent'             => 'رمز عبور جدید برای شما ارسال گردید',
+    'national_code'                 => 'کد ملی باید معتبر باشد.',
 ];

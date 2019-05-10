@@ -9,21 +9,6 @@ class AddressesTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(Address::class, 30)->create([
-            'user_id' => 1,
-            'province_id' => 20
-        ]);
-    }
-
-    public function getRandomUserId()
-    {
-        $user = User::inRandomOrder()->first();
-        return $user->id;
-    }
-
-    public function getRandomProvinceId()
-    {
-        $province = Province::inRandomOrder()->first();
-        return $province->id;
+        factory(Address::class, 30)->create();
     }
 }

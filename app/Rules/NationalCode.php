@@ -35,7 +35,7 @@ class NationalCode implements Rule
      */
     public function message()
     {
-        return 'The :attribute must be a valid national code.';
+        return trans('messages.national_code');
     }
 
     //my nationalcode validation
