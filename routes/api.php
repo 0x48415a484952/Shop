@@ -50,6 +50,9 @@ Route::resource('comments', 'Comments\CommentController');
 
 Route::group(['prefix' => 'auth'], function() {
     Route::post('register', 'Auth\RegisterController@action');
+    Route::options('register', 'Auth\RegisterController@action');
+    Route::get('register', 'Auth\RegisterController@action');
+    Route::patch('confirm', 'Auth\PhoneVerificationController@action');
     Route::post('login', 'Auth\LoginController@action');
     Route::get('me', 'Auth\MeController@action');
 });

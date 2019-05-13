@@ -18,10 +18,11 @@ class ProductResource extends ProductIndexResource
     public function toArray($request)
     {
         return array_merge(parent::toArray($request), [
-            'comments' => CommentResource::collection($this->comments),
             'variations' => ProductVariationResource::collection(
                 $this->variations->groupBy('type.title')
-            )
+            ),
+            'comments' => CommentResource::collection($this->comments),
+            // 'comments' => $this->comments
         ]);
     }
 }

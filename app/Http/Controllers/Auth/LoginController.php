@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\PrivateUserResource;
+use JWTAuth;
 
 class LoginController extends Controller
 {
@@ -34,7 +35,6 @@ class LoginController extends Controller
                 ]
             ], 422);
         }
-
         return (new PrivateUserResource($request->user()))
             ->additional([
                 'meta' => [

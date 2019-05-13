@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PublicInformationResource extends JsonResource
+class PhoneVerificationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,8 @@ class PublicInformationResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'image' => $this->image,
-            'level' => $this->level
+            'phone' => $this->phone,
+            'phone_verified_at' => $this->phone_verified_at
         ];
     }
 }

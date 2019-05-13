@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
+use JWTAuth;
+use Exception;
+use Kavenegar;
 use App\Models\User;
+
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\PrivateUserResource;
-use Kavenegar;
 
 class RegisterController extends Controller
 {
@@ -75,7 +83,17 @@ class RegisterController extends Controller
         $validation = $request->validated();
         $validation['phone_verification_code'] =  mt_rand(100000,999999);
         $user = User::create($validation);
-        Kavenegar::VerifyLookup($user->phone, $user->phone_verification_code, null, null, 'verification');
+        // Kavenegar::VerifyLookup($user->phone, $user->phone_verification_code, null, null, 'verification');
+        $token = JWTAuth::fromUser($user);
+        // $cookie = cookie('auth._token.local', 'Bearer '. $token, 120);
+        // return (new PrivateUserResource($user->refresh()))->response()->cookie($cookie);
+
+
+
+        // dd($_SERVER);
+        $domain = ($_SERVER['HTTP_HOST'] != 'localhost:8000') ? $_SERVER['HTTP_HOST'] : false;
+        // dd($domain);
+        setcookie('cookiename', $token, time()+60*60*24*365, '/', $domain, false);
         return new PrivateUserResource($user->refresh());
     }
 }

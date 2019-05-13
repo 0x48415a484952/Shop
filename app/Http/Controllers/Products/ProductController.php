@@ -52,11 +52,19 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load(['variations.type', 'variations.product']);
+        $product->load(['variations.type', 'variations.product', 'comments.product']);
         return new ProductResource(
-            $product
-        );
+                $product
+            );
+        // return $product;
     }
+
+    // public function show(Product $product)
+    // {
+    //     $product =  Product::with('comments')->findOrFail($product->id)->load(['variations.type', 'variations.product']);
+    //     return (new ProductResource($product));
+    //     // return $product;
+    // }
 
     public function scopes() 
     {

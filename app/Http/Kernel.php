@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
+            'api.header',
             'api.localization',
             'bindings',
         ],
@@ -64,7 +65,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
-        //'api.header' => \App\Http\Middleware\AccessControlAppending::class,
+        'api.header' => \App\Http\Middleware\AccessControlAppending::class,
         'role.authorization' => \App\Http\Middleware\AdminMiddleware::class,
         'api.localization' => \App\Http\Middleware\LocalizationMiddleware::class,
         

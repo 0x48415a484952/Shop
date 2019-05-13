@@ -174,10 +174,8 @@ class UserController extends Controller
             }
 
             if ($user->phone_verification_code == $request->get('phone_verification_code')) {
-
                 User::where('id', $user->id)
                     ->update(['phone_verified_at' => date_create(), 'phone_verification_code' => mt_rand(100000, 999999)]);
-
                 return response()->json(['status' => '1', 'message' => trans('messages.phone_number_confirmed')]);
             }
 
