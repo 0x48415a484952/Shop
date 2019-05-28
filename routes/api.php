@@ -48,13 +48,17 @@ Route::resource('provinces', 'Provinces\ProvinceController');
 Route::resource('cities', 'Cities\CityController');
 Route::resource('comments', 'Comments\CommentController');
 
+Route::get('search', 'SearchController@action');
+
 Route::group(['prefix' => 'auth'], function() {
     Route::post('register', 'Auth\RegisterController@action');
-    Route::options('register', 'Auth\RegisterController@action');
+    // Route::options('register', 'Auth\RegisterController@action');
     Route::get('register', 'Auth\RegisterController@action');
     Route::patch('confirm', 'Auth\PhoneVerificationController@action');
     Route::post('login', 'Auth\LoginController@action');
+    Route::post('logout', 'Auth\LogoutController@action');
     Route::get('me', 'Auth\MeController@action');
+    Route::post('forgotpassword', 'Auth\ForgotPasswordController@action');
 });
 
 route::resource('cart', 'Cart\CartController', [

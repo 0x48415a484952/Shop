@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+use Kavenegar;
+use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use App\Http\Requests\Auth\ForgotPasswordRequest;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+// use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
 {
@@ -18,15 +24,52 @@ class ForgotPasswordController extends Controller
     |
     */
 
-    use SendsPasswordResetEmails;
+    // use SendsPasswordResetEmails;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->middleware('guest');
+    // }
+
+
+    public function action(ForgotPasswordRequest $request)
     {
-        $this->middleware('guest');
+        $userInfo = User::where('phone', $request->get('phone'))
+                ->where('social_id', $request->get('social_id'))
+                ->whereNull('phone_verified_at')->count();
+                // dd($userInfo);
+        if ($userInfo > 0) {
+
+            $verificationCode = mt_rand(100000,999999);
+            
+            $newPassword = Str::random(12);
+            User::where('phone', $request->get('phone'))
+                ->where('social_id', $request->get('social_id'))
+                ->update(['password' => Hash::make($newPassword), 'phone_verification_code' => $verificationCode]);
+            $result = Kavenegar::VerifyLookup($request->get('phone'), $verificationCode, $newPassword, null, 'resetPasswordUnverified');
+            return response()->json(['message' => trans('messages.account_have_been_updated')], 200);
+        }
+
+        $userInfo = User::where('phone', $request->get('phone'))
+                ->where('social_id', $request->get('social_id'))
+                ->whereNotNull('phone_verified_at')->count();
+                // dd($userInfo);
+        if ($userInfo > 0) {
+            $newPassword = Str::random(12);
+            User::where('phone', $request->get('phone'))
+                ->where('social_id', $request->get('social_id'))
+                ->update(['password' => Hash::make($newPassword)]);
+            $result = Kavenegar::VerifyLookup($request->get('phone'), $newPassword, null, null, 'resetPasswordVerified');
+            return response()->json(['message' => trans('messages.new_password_sent')], 200);
+        }
+
+        
+
+        return response()->json(['message' => trans('messages.invalid_credentials')], 422);
     }
 }

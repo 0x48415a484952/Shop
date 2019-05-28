@@ -83,7 +83,7 @@ class RegisterController extends Controller
         $validation = $request->validated();
         $validation['phone_verification_code'] =  mt_rand(100000,999999);
         $user = User::create($validation);
-        // Kavenegar::VerifyLookup($user->phone, $user->phone_verification_code, null, null, 'verification');
+        Kavenegar::VerifyLookup($user->phone, $user->phone_verification_code, null, null, 'verification');
         $token = JWTAuth::fromUser($user);
         // $cookie = cookie('auth._token.local', 'Bearer '. $token, 120);
         // return (new PrivateUserResource($user->refresh()))->response()->cookie($cookie);

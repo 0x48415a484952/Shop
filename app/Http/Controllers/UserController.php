@@ -206,7 +206,7 @@ class UserController extends Controller
             if ($userInfo > 0) {
 
                 $verificationCode = mt_rand(100000,999999);
-
+                
                 $newPassword = Str::random(12);
                 User::where('phone', $request->get('phone'))
                     ->where('social_id', $request->get('social_id'))

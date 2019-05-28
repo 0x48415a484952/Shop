@@ -35,6 +35,12 @@ class LoginController extends Controller
                 ]
             ], 422);
         }
+        if ($request->user()->phone_verified_at == null)  return response()->json([
+            'errors' => [
+                'verify_phone' => [ trans('messages.verify_phone') ]
+            ]
+        ], 422);
+
         return (new PrivateUserResource($request->user()))
             ->additional([
                 'meta' => [
