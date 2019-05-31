@@ -17,6 +17,7 @@ $factory->define(Address::class, function (Faker $faker) {
         'province_id' => $province_id = factory(Province::class)->create()->id,
         'city_id' => factory(City::class)->create([
             'province_id' => $province_id
-        ])
+        ]),
+        'default' => 'true'
     ];
 });

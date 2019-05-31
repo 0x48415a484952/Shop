@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PublicInformationResource extends JsonResource
+class PrivateInformationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +18,10 @@ class PublicInformationResource extends JsonResource
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'job' => $this->job,
-            'birth_date' => $this->birth_date,
+            'birth_date' => $this->date,
             'image' => $this->image,
-            'level' => $this->level
+            'level' => $this->level,
+            'created_at' => $this->created_at
         ];
     }
 }

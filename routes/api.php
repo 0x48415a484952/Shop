@@ -61,9 +61,13 @@ Route::group(['prefix' => 'auth'], function() {
     Route::post('forgotpassword', 'Auth\ForgotPasswordController@action');
 });
 
+Route::get('profile', 'Profile\ProfileController@me');
+
 route::resource('cart', 'Cart\CartController', [
     'parameters' => [
         'cart' => 'productVariation'
     ]
 ]);
+
+
 
