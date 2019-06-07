@@ -18,7 +18,7 @@ class CreateProductImagesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->string('image');
+            $table->string('url')->default('/storage/iphone.jpg');
             $table->timestamps();
         });
     }

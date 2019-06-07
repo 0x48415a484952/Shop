@@ -6,9 +6,11 @@ use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\ProductImages;
 use App\Http\Controllers\Controller;
 use App\Scoping\Scopes\CategoryScope;
 use App\Http\Resources\ProductResource;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ProductIndexResource;
 
 class ProductController extends Controller
@@ -44,7 +46,10 @@ class ProductController extends Controller
     // }
     public function index()
     {
-        $products = Product::with(['variations.stock'])->withScopes($this->scopes())->paginate(12);
+        // dd(Storage::url('iphone.jpg'));
+        // dd(factory(ProductImages::class)->create());
+        // $products = Storage::url();
+        $products = Product::with(['variations.stock',])->withScopes($this->scopes())->paginate(12);
         return ProductIndexResource::collection(
             $products
         );

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+        // $faker->image('public/storage/images',500,500);
         $this->call(UsersTableSeeder::class);
         $this->call(InformationTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductVariationsTableSeeder::class);
         $this->call(MylistsTableSeeder::class);
         $this->call(CommentTableSeeder::class);
+        $this->call(ImageTableSeeder::class);
         $this->call(ProvinceTableSeeder::class);
         $this->call(CityTableSeeder::class);
         $this->call(AddressesTableSeeder::class);

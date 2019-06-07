@@ -84,7 +84,8 @@
                             <li><a class="p-2 hover:bg-nikan-orange block text-white" href="#">Another one</a></li>
                             <li><a class="p-2 hover:bg-nikan-orange block text-white" href="#">Contacts Pripherals</a></li>
                             <li><a class="p-2 hover:bg-nikan-orange block text-white" href="#">Other shit</a></li>
-                            <li class="hover:bg-nikan-orange submenu"><a class="p-2 block text-white" href="#" title="">Products</a>
+                            <li class="hover:bg-nikan-orange submenu">
+                                <a class="p-2 block text-white" href="#" title="">Products</a>
                                 <ul class="flex flex-wrap w-full megamenu2 rounded text-xs">
                                     <div class="w-1/6">
                                         <ul class="px-2">

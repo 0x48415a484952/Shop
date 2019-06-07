@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Comment;
 use App\Models\Category;
+use App\Models\ProductImages;
 use App\Models\Traits\HasPrice;
 use App\Models\ProductVariation;
 use App\Models\Traits\CanBeScoped;
@@ -43,5 +44,10 @@ class Product extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class)->with('user');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class);
     }
 }
