@@ -91,9 +91,9 @@ class RegisterController extends Controller
 
 
         // dd($_SERVER);
-        $domain = ($_SERVER['HTTP_HOST'] != 'localhost:8000') ? $_SERVER['HTTP_HOST'] : false;
+        // $domain = ($_SERVER['HTTP_HOST'] != 'localhost:8000') ? $_SERVER['HTTP_HOST'] : false;
         // dd($domain);
-        setcookie('cookiename', $token, time()+60*60*24*365, '/', $domain, false);
+        // setcookie('cookiename', $token, time()+60*60*24*365, '/', $domain, false);
         return new PrivateUserResource($user->refresh());
     }
 }

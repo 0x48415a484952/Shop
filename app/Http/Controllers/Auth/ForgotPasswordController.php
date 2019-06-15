@@ -52,7 +52,7 @@ class ForgotPasswordController extends Controller
                 ->where('social_id', $request->get('social_id'))
                 ->update(['password' => Hash::make($newPassword), 'phone_verification_code' => $verificationCode]);
             $result = Kavenegar::VerifyLookup($request->get('phone'), $verificationCode, $newPassword, null, 'resetPasswordUnverified');
-            return response()->json(['message' => trans('messages.account_have_been_updated')], 200);
+            return response()->json(['data' => ['message' => trans('messages.account_have_been_updated')] ], 200);
         }
 
         $userInfo = User::where('phone', $request->get('phone'))
@@ -65,11 +65,11 @@ class ForgotPasswordController extends Controller
                 ->where('social_id', $request->get('social_id'))
                 ->update(['password' => Hash::make($newPassword)]);
             $result = Kavenegar::VerifyLookup($request->get('phone'), $newPassword, null, null, 'resetPasswordVerified');
-            return response()->json(['message' => trans('messages.new_password_sent')], 200);
+            return response()->json(['data' => ['message' => trans('messages.new_password_sent')] ], 200);
         }
 
         
 
-        return response()->json(['message' => trans('messages.invalid_credentials')], 422);
+        return response()->json(['data' => ['message' => trans('messages.invalid_credentials')] ], 422);
     }
 }

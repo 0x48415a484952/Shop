@@ -51,6 +51,6 @@ class CommentController extends Controller
         // $comment->save();
         
         
-        return response()->json(['errors' => ['message' => 'login first', 'status' => '!login']], 422);
+        return response()->json(['errors' => ['message' => 'you should login first to be able to add comments', 'status' => '!login']], 422);
     }
 }
