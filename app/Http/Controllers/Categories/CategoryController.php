@@ -9,15 +9,21 @@ use Illuminate\Support\Facades\Validator;
 use Exception;
 use Throwable;
 use App\Http\Resources\CategoryResource;
+use App\Http\Requests\Categories\CategoryStoreRequest;
+
 //use Illuminate\Support\Facades\Response;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware(['jwt.verify', 'role.authorization'], ['only' => ['create', 'store', 'edit', 'delete']]);
+        // Alternativly
+        // $this->middleware(['jwt.verify', 'role.authorization'], ['except' => ['index', 'show']]);
+    }
+
+
     public function index()
     {
         // return Category::all();
@@ -42,29 +48,33 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        try {
-            $validator = Validator::make($request->all(), [
-                'parent_id' => ['required', 'numeric', 'digits:1'],
-                'title' => ['required', 'string'],
-                'slug' => ['required', 'string'],
-            ]);
+        // try {
+            // $validator = Validator::make($request->all(), [
+            //     'parent_id' => ['nullable', 'numeric', 'min:1'],
+            //     'title' => ['required', 'string'],
+            //     'slug' => ['required', 'string'],
+            // ]);
     
-            if ($validator->fails()) {
-                return response()->json(['status' => 'fail', 'message' => 'something went wrong', 'errors' => $validator->errors()], Response::HTTP_NOT_FOUND);
-            }
+            // if ($validator->fails()) {
+            //     return response()->json(['status' => 'fail', 'message' => 'something went wrong', 'errors' => $validator->errors()], 422);
+            // }
     
             $category = Category::create([
                 'parent_id' => $request->get('parent_id'),
                 'title' => $request->get('title'),
                 'slug' => $request->get('slug'),
             ]);
-    
-            return response()->json(['status' => 'success', 'message' => 'new category has been added to the list', 'result' => $category], 201);
-        } catch (Throwable $e) {
-            return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
-        }
+            return CategoryResource::collection(
+                $category::with('children.children')
+            );
+            // $category = Category::create($request->all());
+            // return $category;
+            // return response()->json(['status' => 'success', 'message' => 'new category has been added to the list', 'result' => $category], 201);
+        // } catch (Throwable $e) {
+        //     return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
+        // }
     }
 
     /**

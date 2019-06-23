@@ -11,6 +11,7 @@ use App\Http\Requests\Comment\CommentStoreRequest;
 
 class CommentController extends Controller
 {
+
     public function index()
     {
         return Comment::get();

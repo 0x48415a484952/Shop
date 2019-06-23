@@ -62,6 +62,7 @@ Route::group(['prefix' => 'auth'], function() {
 });
 
 Route::get('profile', 'Profile\ProfileController@me');
+Route::post('profile', 'Profile\ProfileController@store');
 
 route::resource('cart', 'Cart\CartController', [
     'parameters' => [
@@ -69,5 +70,16 @@ route::resource('cart', 'Cart\CartController', [
     ]
 ]);
 
+
+
+
+Route::group(['middleware' => ['jwt.verify', 'role.authorization']], function() {
+    // Route::get('product/create', 'ProductController@create');
+    // Route::get('category/product/{product}', 'ProductController@removeCategory');
+    // Route::post('category', 'CategoryController@store');
+    // Route::post('category{category}/edit', 'CategoryController@edit');
+    // Route::put('category', 'CategoryController@update');
+    // Route::delete('category/{category}', 'CategoryController@destroy');
+});
 
 

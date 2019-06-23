@@ -22,7 +22,7 @@ class AddressResource extends JsonResource
             'city' => new CityResource($this->city),
             'recipient_name' => $this->recipient_name,
             'address' => $this->address,
-            'postal_code' => 1,
+            'postal_code' => $this->postal_code,
             'telephone' => $this->telephone,
             'default' => $this->default
         ];
