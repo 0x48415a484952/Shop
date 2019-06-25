@@ -25,4 +25,5 @@ return [
     'new_password_sent'             => 'the new password has been sent to your phone number',
     'national_code'                 => 'The national code must be a valid national code.',
     'verify_phone'                  => 'You need to verify your phone number before login',
+    'deleted_successfully'          => 'Deleted Successfully'
 ];

@@ -8,7 +8,7 @@ class DataController extends Controller
 {
     public function open() 
     {
-        $data = "this is data is open and can be accessed without the client being authenticated";
+        $data = "this data is open and can be accessed without the client being authenticated";
         return response()->json(compact('data'),200);
     }
 

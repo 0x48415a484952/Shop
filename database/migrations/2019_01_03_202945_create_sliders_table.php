@@ -17,7 +17,7 @@ class CreateSlidersTable extends Migration
             $table->increments('id');
             $table->string('image');
             $table->string('title');
-            $table->unsignedInteger('sort');
+            $table->unsignedInteger('sort')->nullable();
             $table->timestamps();
         });
     }

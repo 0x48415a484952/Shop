@@ -43,10 +43,12 @@ Route::group(['middleware' => ['jwt.verify', 'role.authorization']], function() 
 Route::resource('categories', 'Categories\CategoryController');
 Route::resource('mylists', 'Mylists\MylistController');
 Route::resource('products', 'Products\ProductController');
+Route::get('getRandomProducts', 'Products\ProductController@getRandomProducts');
 Route::resource('addresses', 'Addresses\AddressController');
 Route::resource('provinces', 'Provinces\ProvinceController');
 Route::resource('cities', 'Cities\CityController');
 Route::resource('comments', 'Comments\CommentController');
+Route::resource('sliders', 'Sliders\SliderController');
 
 Route::get('search', 'SearchController@action');
 

@@ -55,6 +55,30 @@ class ProductController extends Controller
         );
     }
 
+
+    public function getRandomProducts()
+    {
+        $products = Product::inRandomOrder()->get();
+        return $products;
+        return ProductIndexResource::collection(
+            $products
+        );
+
+        // dd('ok');
+    }
+
+
+    // public function getRandom()
+    // {
+    //     // dd(Storage::url('iphone.jpg'));
+    //     // dd(factory(ProductImages::class)->create());
+    //     // $products = Storage::url();
+    //     $products = Product::with(['variations.stock',])->withScopes($this->scopes())->paginate(12);
+    //     return ProductIndexResource::collection(
+    //         $products
+    //     );
+    // }
+
     public function show(Product $product)
     {
         $product->load(['variations.type', 'variations.product', 'comments.product']);
@@ -63,6 +87,9 @@ class ProductController extends Controller
             );
         // return $product;
     }
+
+
+
 
     // public function show(Product $product)
     // {

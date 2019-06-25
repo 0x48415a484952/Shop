@@ -25,4 +25,5 @@ return [
     'new_password_sent'             => 'رمز عبور جدید برای شما ارسال گردید',
     'national_code'                 => 'کد ملی باید معتبر باشد.',
     'verify_phone'                  => 'شماره تلفن حود را تایید کنید',
+    'deleted_successfully'          => 'با موفقیت حذف گردید'
 ];

@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\PublicUserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CommentResource extends JsonResource
+class SlidersIndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +16,9 @@ class CommentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'image' => $this->image,
             'title' => $this->title,
-            'content' => $this->content,
-            'created_at' => $this->created_at->format('Y-m-d H:i'),
-            'user' => new PublicUserResource($this->user),
-            // 'user' => $this->user
-            
+            'sort' => $this->sort,
         ];
     }
 }
