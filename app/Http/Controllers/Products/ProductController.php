@@ -12,6 +12,7 @@ use App\Scoping\Scopes\CategoryScope;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\ProductIndexResource;
+use App\Http\Requests\Products\ProductStoreRequest;
 
 class ProductController extends Controller
 {
@@ -55,6 +56,22 @@ class ProductController extends Controller
         );
     }
 
+    public function store(ProductStoreRequest $request)
+    {
+        $product = new Product;
+        $product->title = $request->title;
+        $product->slug = $request->slug;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->save();
+        return new ProductIndexResource($product);
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+    }
 
     public function getRandomProducts()
     {

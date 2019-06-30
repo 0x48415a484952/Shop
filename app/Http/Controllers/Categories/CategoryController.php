@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['jwt.verify', 'role.authorization'], ['only' => ['create', 'store', 'edit', 'delete']]);
+        $this->middleware(['jwt.verify', 'role.authorization'], ['only' => ['create', 'store', 'edit', 'destroy']]);
         // Alternativly
         // $this->middleware(['jwt.verify', 'role.authorization'], ['except' => ['index', 'show']]);
     }
@@ -50,31 +50,12 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        // try {
-            // $validator = Validator::make($request->all(), [
-            //     'parent_id' => ['nullable', 'numeric', 'min:1'],
-            //     'title' => ['required', 'string'],
-            //     'slug' => ['required', 'string'],
-            // ]);
-    
-            // if ($validator->fails()) {
-            //     return response()->json(['status' => 'fail', 'message' => 'something went wrong', 'errors' => $validator->errors()], 422);
-            // }
-    
-            $category = Category::create([
-                'parent_id' => $request->get('parent_id'),
-                'title' => $request->get('title'),
-                'slug' => $request->get('slug'),
-            ]);
-            return CategoryResource::collection(
-                $category::with('children.children')
-            );
-            // $category = Category::create($request->all());
-            // return $category;
-            // return response()->json(['status' => 'success', 'message' => 'new category has been added to the list', 'result' => $category], 201);
-        // } catch (Throwable $e) {
-        //     return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
-        // }
+            $category = new Category;
+            $category->parent_id = $request->parent_id;
+            $category->title = $request->title;
+            $category->slug = $request->slug;
+            $category->save();
+            return new CategoryResource($category);
     }
 
     /**
@@ -137,13 +118,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $category = Category::findOrFail($id);
-            $category->delete();
-            return response()->json(['status' => 'success', 'message' => 'category has been deleted'], 201);
-        } catch (Throwable $e) {
-            return response()->json(['status' => 'fail', 'message' => $e->getMessage()]);
-        }
+        $categories = Category::with('children.children')->where('id', $id)->get();
+        $categories->each->delete();
+        return response()->json(['status' => 'success', 'message' => 'category has been deleted'], 200);
     }
 
     public function makePath($id)
