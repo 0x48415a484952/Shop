@@ -16,6 +16,13 @@ use App\Http\Requests\Products\ProductStoreRequest;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['jwt.verify', 'role.authorization'], ['only' => ['create', 'store', 'edit', 'destroy']]);
+        // Alternativly
+        // $this->middleware(['jwt.verify', 'role.authorization'], ['except' => ['index', 'show']]);
+    }
     // public function create(Request $request)
     // {
     //     $product = new Product;
@@ -64,6 +71,10 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->save();
+        $url = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('images'), $url);
+        $product->images()->associate($url);
+        $product->categories()->attach($request->category_id);
         return new ProductIndexResource($product);
     }
 

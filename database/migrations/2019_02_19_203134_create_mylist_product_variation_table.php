@@ -17,9 +17,9 @@ class CreateMylistProductVariationTable extends Migration
         Schema::create('mylist_product_variation', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('mylist_id');
-            $table->foreign('mylist_id')->references('id')->on('mylists');
+            $table->foreign('mylist_id')->references('id')->on('mylists')->onDelete('cascade');
             $table->unsignedInteger('product_variation_id');
-            $table->foreign('product_variation_id')->references('id')->on('product_variations');
+            $table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
             $table->timestamps();
         });
     }

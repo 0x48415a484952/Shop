@@ -19,7 +19,7 @@ class CreateStocksTable extends Migration
             $table->integer('product_variation_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('product_variation_id')->references('id')->on('product_variations');
+            $table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
         });
     }
 

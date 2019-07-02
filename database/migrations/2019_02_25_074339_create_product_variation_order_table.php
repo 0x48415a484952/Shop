@@ -20,7 +20,7 @@ class CreateProductVariationOrderTable extends Migration
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('product_variation_id')->references('id')->on('product_variations');
+            $table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
         });
     }
 

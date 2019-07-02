@@ -22,8 +22,8 @@ class CreateProductVariationsTable extends Migration
             $table->integer('order')->nullable();
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('product_variation_type_id')->references('id')->on('product_variation_types');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_variation_type_id')->references('id')->on('product_variation_types')->onDelete('cascade');
         });
     }
 

@@ -20,7 +20,7 @@ class CreateCartUserTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('product_variation_id')->references('id')->on('product_variations');
+            $table->foreign('product_variation_id')->references('id')->on('product_variations')->onDelete('cascade');
         });
     }
 
