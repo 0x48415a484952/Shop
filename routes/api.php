@@ -43,8 +43,10 @@ Route::group(['middleware' => ['jwt.verify', 'role.authorization']], function() 
 Route::resource('categories', 'Categories\CategoryController');
 Route::resource('mylists', 'Mylists\MylistController');
 Route::resource('products', 'Products\ProductController');
+Route::get('productIndexForAdmin', 'Products\ProductController@productIndexForAdmin');
 Route::get('getRandomProducts', 'Products\ProductController@getRandomProducts');
 Route::resource('productvariationtypes', 'ProductVariationType\ProductVariationTypeController');
+Route::resource('productvariations', 'ProductVariation\ProductVariationController');
 Route::resource('addresses', 'Addresses\AddressController');
 Route::resource('provinces', 'Provinces\ProvinceController');
 Route::resource('cities', 'Cities\CityController');

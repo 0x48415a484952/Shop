@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Products;
+namespace App\Http\Requests\ProductVariation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductStoreRequest extends FormRequest
+class ProductVariationStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,10 @@ class ProductStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'slug' => 'required|string',
-            'description' =>'required|string|max:255',
-            'price' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg'
+            'price' => 'required|string',
+            'quantity' =>'required|string|max:255',
+            'product_id' => 'required|numeric|min:1|exists:products,id',
+            'product_variation_type_id' => 'required|numeric|min:1|exists:product_variation_types,id',
         ];
     }
 }

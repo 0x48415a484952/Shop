@@ -17,6 +17,8 @@ class CreateSlidersTable extends Migration
             $table->increments('id');
             $table->string('image');
             $table->string('title');
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedInteger('sort')->nullable();
             $table->timestamps();
         });

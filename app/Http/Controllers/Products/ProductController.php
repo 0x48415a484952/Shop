@@ -54,10 +54,19 @@ class ProductController extends Controller
     // }
     public function index()
     {
-        // dd(Storage::url('iphone.jpg'));
-        // dd(factory(ProductImages::class)->create());
-        // $products = Storage::url();
         $products = Product::with(['variations.stock',])->withScopes($this->scopes())->paginate(12);
+        return ProductIndexResource::collection(
+            $products
+        );
+        // $products = Product::with(['variations.stock',])->withScopes($this->scopes())->get();
+        // return ProductIndexResource::collection(
+        //     $products
+        // );
+    }
+
+    public function productIndexForAdmin()
+    {
+        $products = Product::with(['variations.stock',])->withScopes($this->scopes())->get();
         return ProductIndexResource::collection(
             $products
         );
@@ -70,11 +79,16 @@ class ProductController extends Controller
         $product->slug = $request->slug;
         $product->description = $request->description;
         $product->price = $request->price;
+        $productImage = new ProductImages();
+        // $productImage->image = $request->image;
+        $productImage->url = time().'.'.$request->image->getClientOriginalExtension();
+        // Storage::disk('local')->put('public', $request->image, 'public');
+        Storage::disk('local')->putFileAs('public', $request->image, $productImage->url);
         $product->save();
-        $url = time().'.'.$request->image->getClientOriginalExtension();
-        $request->image->move(public_path('images'), $url);
-        $product->images()->associate($url);
+        $productImage->product_id = $product->id;
+        $product->images()->save($productImage);
         $product->categories()->attach($request->category_id);
+        
         return new ProductIndexResource($product);
     }
 

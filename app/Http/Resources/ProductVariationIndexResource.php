@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SlidersIndexResource extends JsonResource
+class ProductVariationIndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,11 @@ class SlidersIndexResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => $this->image,
+            'product_id' => $this->product_id,
+            'product_variation_type_id' => $this->product_variation_type_id,
             'title' => $this->title,
-            'sort' => $this->sort,
-            'category_id' => $this->category_id,
+            'price' => $this->formattedPrice,
+            'order' => $this->order,
         ];
     }
 }

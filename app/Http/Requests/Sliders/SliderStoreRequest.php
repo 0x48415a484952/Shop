@@ -24,9 +24,10 @@ class SliderStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' =>'required|string|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'title' => 'required|string|max:60',
-            'sort' => 'required|numeric|max:2'
+            'sort' => 'required|numeric|max:2',
+            'category_id' => 'required|numeric|min:1|exists:categories,id',
         ];
     }
 }

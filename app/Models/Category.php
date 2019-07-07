@@ -27,4 +27,9 @@ class Category extends Model
         return $this->belongsToMany(Product::class);
     }
 
+    public function sliders()
+    {
+        return $this->hasMany(Slider::class);
+    }
+
 }
