@@ -8,5 +8,4 @@ use App\Models\Traits\HasPrice;
 class ShippingMethod extends Model
 {
     use HasPrice;
-    
 }
