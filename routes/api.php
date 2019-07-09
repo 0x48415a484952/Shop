@@ -53,6 +53,7 @@ Route::resource('cities', 'Cities\CityController');
 Route::resource('comments', 'Comments\CommentController');
 Route::resource('sliders', 'Sliders\SliderController');
 Route::resource('shippingmethods', 'ShippingMethods\ShippingMethodController');
+Route::resource('orders', 'Orders\OrderController');
 
 Route::get('search', 'SearchController@action');
 

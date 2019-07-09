@@ -8,6 +8,7 @@ use App\Models\Stock;
 use App\Models\Traits\HasPrice;
 use App\Models\ProductVariationType;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Collections\ProductVariationCollection;
 
 class ProductVariation extends Model
 {
@@ -72,5 +73,13 @@ class ProductVariation extends Model
     public function lists()
     {
         return $this->belongsToMany(Mylist::class);
+    }
+
+
+
+    //this is used with the forsyncing method in order controllers and the productvariationcollection class
+    public function newCollection(array $models = [])
+    {
+        return new ProductVariationCollection($models);
     }
 }

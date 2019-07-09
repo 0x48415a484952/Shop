@@ -68,6 +68,8 @@ class Kernel extends HttpKernel
         'api.header' => \App\Http\Middleware\AccessControlAppending::class,
         'role.authorization' => \App\Http\Middleware\AdminMiddleware::class,
         'api.localization' => \App\Http\Middleware\LocalizationMiddleware::class,
+        'cart.sync' => \App\Http\Middleware\Cart\Sync::class,
+        'cart.isnotempty' => \App\Http\Middleware\Cart\ResponseIfEmpty::class,
         
     ];
 

@@ -17,11 +17,14 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('status');
-            $table->unsignedInteger('address_id');
+            $table->string('status')->default('pending');
+            $table->unsignedInteger('address_id')->index();
+            $table->unsignedInteger('shipping_method_id')->index();
+            $table->unsignedInteger('subtotal');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('shipping_method_id')->references('id')->on('shipping_methods');
             $table->foreign('address_id')->references('id')->on('addresses');
         });
     }

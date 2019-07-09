@@ -25,5 +25,7 @@ return [
     'new_password_sent'             => 'رمز عبور جدید برای شما ارسال گردید',
     'national_code'                 => 'کد ملی باید معتبر باشد.',
     'verify_phone'                  => 'شماره تلفن حود را تایید کنید',
-    'deleted_successfully'          => 'با موفقیت حذف گردید'
+    'deleted_successfully'          => 'با موفقیت حذف گردید',
+    'some_items_in_your_cart_has_changed' => 'تعداد موجودی برخی از محصولات در سبد خرید شما تغییر کرده است',
+    'cart_is_empty'                 => 'سبد خرید شما خالی است'
 ];
