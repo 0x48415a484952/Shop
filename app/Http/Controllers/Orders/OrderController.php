@@ -21,7 +21,17 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $orders = $request->user()->orders()
-            ->with(['products', 'address', 'shippingMethod'])
+            ->with([
+                    'products',
+                    'products.type',
+                    'products.stock',
+                    'products.product',
+                    'products.product.images',
+                    'products.product.variations',
+                    'products.product.variations.stock',
+                    'address',
+                    'shippingMethod'
+                ])
             ->latest()
             ->paginate(10);
 
