@@ -30,6 +30,7 @@ class Money
             new ISOCurrencies()
         );
 
+        //removing the special characters of persian language because there is ریال
         $formatterWithoutSpecialChars = preg_replace('/\p{C}+/u', "", $formatter->format($this->money)); 
         // return $formatter->format($this->money);
         return $formatterWithoutSpecialChars;

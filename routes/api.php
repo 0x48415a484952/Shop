@@ -89,4 +89,9 @@ Route::group(['middleware' => ['jwt.verify', 'role.authorization']], function() 
     // Route::delete('category/{category}', 'CategoryController@destroy');
 });
 
+//pay.ir routes	
+Route::get('transactions', 'Transactions\TransactionController@index');
+Route::post('transactions', 'Transactions\TransactionController@store');
+Route::get('transactions/callback', 'Transactions\TransactionController@callback');
+
 

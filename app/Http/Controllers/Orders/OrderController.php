@@ -8,6 +8,7 @@ use App\Events\Order\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderResource;
 use App\Http\Requests\Orders\OrderStoreRequest;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -36,6 +37,28 @@ class OrderController extends Controller
             ->paginate(10);
 
         return OrderResource::collection($orders);
+        // return $orders;
+    }
+
+    public function show(Order $order, Request $request)
+    {
+        $order->load([
+            'products',
+            'products.type',
+            'products.stock',
+            'products.product',
+            'products.product.images',
+            'products.product.variations',
+            'products.product.variations.stock',
+            'address',
+            'shippingMethod'
+        ]);
+
+        if($order->user_id != $request->user()->id) return response()->json('not athorised');
+
+        return new OrderResource(
+            $order
+        );
     }
 
     public function store(OrderStoreRequest $request, Cart $cart)
@@ -62,7 +85,6 @@ class OrderController extends Controller
         // $order->load(['products']);
         // $order->load(['shippingMethod']);
         // $order->load(['address']);
-
 
         //this is needed remember to uncomment it 
         //warning!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

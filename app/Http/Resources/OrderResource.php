@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Order;
 use App\Http\Resources\AddressResource;
 use App\Http\Resources\ProductVariationResource;
 use Illuminate\Http\Resources\Json\JsonResource;

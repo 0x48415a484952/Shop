@@ -55,7 +55,8 @@ class Order extends Model
     public function products()
     {
         return $this->belongsToMany(ProductVariation::class, 'product_variation_order')
-            ->withPivot(['quantity'])
-            ->withTimestamps();
+        // return $this->belongsToMany(ProductVariation::class)
+        ->withPivot(['quantity'])
+        ->withTimestamps();
     }
 }

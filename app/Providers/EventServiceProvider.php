@@ -22,6 +22,18 @@ class EventServiceProvider extends ServiceProvider
             // 'App\Listeners\Order\ProcessPayment',
             'App\Listeners\Order\EmptyCart',
         ],
+
+        'App\Events\Order\OrderPaymentFailed' => [
+            'App\Listeners\Order\MarkOrderPaymentFailed',
+            //we can create an event to send an sms on payment failed
+        ],
+
+        'App\Events\Order\OrderPaid' => [
+            //needs to setup ttansaction model migration and relation of orders and transaction whcih an order hasMany transaction
+            'App\Listeners\Order\CreateTransaction',
+            'App\Listeners\Order\MarkOrderProcessing',
+            //we can create an event to send an sms on payment successfull
+        ],
     ];
 
     /**

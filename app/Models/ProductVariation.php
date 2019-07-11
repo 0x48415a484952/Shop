@@ -14,7 +14,6 @@ class ProductVariation extends Model
 {
     use HasPrice;
 
-
     public function getPriceAttribute($value)
     {
         if ($value === null) {
@@ -76,10 +75,15 @@ class ProductVariation extends Model
     }
 
 
-
     //this is used with the forsyncing method in order controllers and the productvariationcollection class
     public function newCollection(array $models = [])
     {
         return new ProductVariationCollection($models);
     }
+
+
+    // public function orders()
+    // {
+    //     return $this->belongsToMany(Order::class)->withPivot(['quantity']);
+    // }
 }
