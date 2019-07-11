@@ -24,7 +24,8 @@ class TransactionStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => 'required|numeric|min:1000'
+            'amount' => 'required|numeric|min:1000',
+            'order' => 'required|numeric:min:1'
         ];
     }
 }
