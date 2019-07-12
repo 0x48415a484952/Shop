@@ -16,6 +16,7 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:api']);
+        $this->middleware(['auth:api', 'role.authorization'])->only('update', 'edit');
         $this->middleware(['cart.sync', 'cart.isnotempty'])->only('store');
     }
 
@@ -102,6 +103,16 @@ class OrderController extends Controller
         
     }
 
+    public function update(Request $request)
+    {
+        $order = Order::findOrFail($request->order);
+        //change order status to $request->status which should be the constants we have at Order Model
+        $status = $request->status;
+        $order->update([
+            'status' => $status
+        ]);
+    }
+
     protected function createOrder(Request $request, Cart $cart)
     {
         return $request->user()->orders()->create(
@@ -110,4 +121,6 @@ class OrderController extends Controller
             ])
         );
     }
+
+
 }
