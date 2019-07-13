@@ -43,7 +43,8 @@ class Product extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class)->with('user')->orderby('created_at');
+        // return $this->hasMany(Comment::class)->with('user')->orderby('created_at');
+        return $this->hasMany(Comment::class)->orderby('created_at');
     }
 
     public function images()

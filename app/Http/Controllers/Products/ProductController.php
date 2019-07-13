@@ -123,10 +123,11 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load(['variations.type', 'variations.product', 'comments.product']);
+        $product->load(['variations.type', 'variations.product']);
+        // $product->load(['variations.type', 'variations.product', 'comments.product']);
         return new ProductResource(
-                $product
-            );
+            $product
+        );
         // return $product;
     }
 

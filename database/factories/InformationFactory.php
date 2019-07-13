@@ -6,6 +6,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Information::class, function (Faker $faker) {
     $user = User::inRandomOrder()->first();
+    // $user = User::get();
     return [
         'user_id' => $user->id,
         'first_name' => $faker->firstName,

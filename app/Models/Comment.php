@@ -19,6 +19,12 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class)->with('information');
+        // return $this->belongsTo(User::class)->with('information');
+        return $this->belongsTo(User::class);
     }
+
+    // public function information()
+    // {
+    //     return $this->hasOne(Information::class);
+    // }
 }

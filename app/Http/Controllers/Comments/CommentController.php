@@ -37,7 +37,10 @@ class CommentController extends Controller
             $comment = new Comment;
             $comment->title = $request->title;
             $comment->content = $request->content;
+            // $comment->information()->associate($request->information_id);
             $comment->user()->associate($request->user());
+            // $product = Product::findOrFail($request->product_id);
+            // $product->comments()->save($comment);
             $comment->product()->associate($request->product_id);
             $comment->save();
             return response()->json('fine', 200);

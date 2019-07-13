@@ -66,6 +66,7 @@ Route::group(['prefix' => 'auth'], function() {
     Route::post('login', 'Auth\LoginController@action');
     Route::post('logout', 'Auth\LogoutController@action');
     Route::get('me', 'Auth\MeController@action');
+    Route::post('profilestore', 'Auth\ProfileStoreController@action');
     Route::post('forgotpassword', 'Auth\ForgotPasswordController@action');
 });
 

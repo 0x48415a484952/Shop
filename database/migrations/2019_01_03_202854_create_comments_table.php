@@ -13,10 +13,12 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->integer('user_id')->unsigned()->index();
+            // $table->integer('information_id')->unsigned()->index();
+            // $table->foreign('information_id')->references('id')->on('information');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

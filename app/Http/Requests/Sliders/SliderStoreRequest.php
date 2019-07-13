@@ -26,7 +26,7 @@ class SliderStoreRequest extends FormRequest
         return [
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'title' => 'required|string|max:60',
-            'sort' => 'required|numeric|max:2',
+            'sort' => 'required|numeric|max:200',
             'category_id' => 'required|numeric|min:1|exists:categories,id',
         ];
     }
