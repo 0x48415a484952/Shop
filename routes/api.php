@@ -44,7 +44,7 @@ Route::resource('categories', 'Categories\CategoryController');
 Route::resource('mylists', 'Mylists\MylistController');
 Route::resource('products', 'Products\ProductController');
 Route::get('productIndexForAdmin', 'Products\ProductController@productIndexForAdmin');
-Route::get('getRandomProducts', 'Products\ProductController@getRandomProducts');
+// Route::get('getRandomProducts', 'Products\ProductController@getRandomProducts');
 Route::resource('productvariationtypes', 'ProductVariationType\ProductVariationTypeController');
 Route::resource('productvariations', 'ProductVariation\ProductVariationController');
 Route::resource('addresses', 'Addresses\AddressController');
@@ -54,6 +54,7 @@ Route::resource('comments', 'Comments\CommentController');
 Route::resource('sliders', 'Sliders\SliderController');
 Route::resource('shippingmethods', 'ShippingMethods\ShippingMethodController');
 Route::resource('orders', 'Orders\OrderController');
+Route::get('orderIndexForAdmin', 'Orders\OrderController@orderIndexForAdmin');
 
 Route::get('search', 'SearchController@action');
 

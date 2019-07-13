@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:api']);
-        $this->middleware(['auth:api', 'role.authorization'])->only('update', 'edit');
+        $this->middleware(['auth:api', 'role.authorization'])->only('update', 'edit', 'adminIndexOrders');
         $this->middleware(['cart.sync', 'cart.isnotempty'])->only('store');
     }
 
@@ -108,9 +108,62 @@ class OrderController extends Controller
         $order = Order::findOrFail($request->order);
         //change order status to $request->status which should be the constants we have at Order Model
         $status = $request->status;
-        $order->update([
-            'status' => $status
-        ]);
+        switch ($status) {
+            case 'processing':
+                $order->update([
+                    'status' => Order::PROCESSING
+                ]);
+                break;
+            case 'payment_failed':
+                $order->update([
+                    'status' => Order::PAYMENT_FAILED
+                ]);
+            break;
+            case 'completed':
+                $order->update([
+                    'status' => Order::COMPLETED
+                ]);
+            break;
+            case 'pending':
+                $order->update([
+                    'status' => Order::PENDING
+                ]);
+            break;
+            // default:
+            //     //
+            //     break;
+            return response()->json(['errors' => ['status' => 'failed', 'message' => 'the status could not be changed']], 402);
+        }
+        return new OrderResource(
+            $order
+        );
+    }
+
+    public function orderIndexForAdmin()
+    {
+        // $orders = Order::get()->with([
+        //     'products',
+        //     'products.type',
+        //     'products.stock',
+        //     'products.product',
+        //     'products.product.images',
+        //     'products.product.variations',
+        //     'products.product.variations.stock',
+        //     'address',
+        //     'shippingMethod'
+        // ])
+        $orders = Order::with(
+            'products',
+            'products.type',
+            'products.stock',
+            'products.product',
+            'products.product.images',
+            'products.product.variations',
+            'products.product.variations.stock',
+            'address',
+            'shippingMethod'
+        )->latest()->paginate(10);
+        return OrderResource::collection($orders);
     }
 
     protected function createOrder(Request $request, Cart $cart)
