@@ -17,7 +17,7 @@ class MylistItemsResource extends JsonResource
         return [
             'id'    => $this->id,
             'title' => $this->title,
-            'slug'  => $this->slug,
+            // 'slug'  => $this->slug,
             'price' => $this->formattedPrice,
             'stock_count' => (int) $this->stockCount(),
             'in_stock' => $this->inStock()

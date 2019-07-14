@@ -42,6 +42,7 @@ Route::group(['middleware' => ['jwt.verify', 'role.authorization']], function() 
 
 Route::resource('categories', 'Categories\CategoryController');
 Route::resource('mylists', 'Mylists\MylistController');
+Route::post('addItemToList', 'Mylists\MylistController@addItemToList');
 Route::resource('products', 'Products\ProductController');
 Route::get('productIndexForAdmin', 'Products\ProductController@productIndexForAdmin');
 // Route::get('getRandomProducts', 'Products\ProductController@getRandomProducts');
@@ -70,8 +71,8 @@ Route::group(['prefix' => 'auth'], function() {
     Route::post('forgotpassword', 'Auth\ForgotPasswordController@action');
 });
 
-Route::get('profile', 'Profile\ProfileController@me');
-Route::post('profile', 'Profile\ProfileController@store');
+// Route::get('profile', 'Profile\ProfileController@me');
+// Route::post('profile', 'Profile\ProfileController@store');
 
 route::resource('cart', 'Cart\CartController', [
     'parameters' => [
